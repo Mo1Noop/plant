@@ -1,0 +1,199 @@
+[gd_scene load_steps=8 format=3 uid="uid://d12we4f18h0ds"]
+
+[ext_resource type="Script" uid="uid://x6m5dnjnr85g" path="res://scripts/main.gd" id="1_o5qli"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
+font_size = 40
+
+[sub_resource type="Animation" id="Animation_o5qli"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(558, 299), Vector2(521, 299)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(40, 213), Vector2(114, 213)]
+}
+
+[sub_resource type="Animation" id="Animation_0wfyh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(558, 299)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 213)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sugp2"]
+_data = {
+&"RESET": SubResource("Animation_0wfyh"),
+&"move": SubResource("Animation_o5qli")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o5qli"]
+font_size = 40
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5qli")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.18772167, 0.002910415, 1)
+
+[node name="PLANT HP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 33.0
+offset_right = 622.0
+offset_bottom = 88.0
+text = " PLANT HP: "
+label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="plant" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -349.0
+offset_right = 22.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 1, 0.20392156, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="plant"]
+libraries = {
+&"": SubResource("AnimationLibrary_sugp2")
+}
+autoplay = "move"
+
+[node name="plant_life_timer" type="Timer" parent="plant"]
+wait_time = 5.0
+autostart = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="BG_stuff" type="ColorRect" parent="Node"]
+offset_left = 817.0
+offset_top = 97.0
+offset_right = 857.0
+offset_bottom = 137.0
+color = Color(0.3903914, 1, 0.46536243, 1)
+
+[node name="BG_stuff2" type="ColorRect" parent="Node"]
+offset_left = 74.0
+offset_top = 266.0
+offset_right = 114.0
+offset_bottom = 306.0
+color = Color(0.3903914, 1, 0.46536243, 1)
+
+[node name="BG_stuff3" type="ColorRect" parent="Node"]
+offset_left = 953.0
+offset_top = 467.0
+offset_right = 993.0
+offset_bottom = 507.0
+color = Color(0.3903914, 1, 0.46536243, 1)
+
+[node name="BG_stuff4" type="ColorRect" parent="Node"]
+offset_left = 506.0
+offset_top = 139.0
+offset_right = 546.0
+offset_bottom = 179.0
+color = Color(0.3903914, 1, 0.46536243, 1)
+
+[node name="BG_stuff5" type="ColorRect" parent="Node"]
+offset_left = 188.0
+offset_top = 424.0
+offset_right = 228.0
+offset_bottom = 464.0
+color = Color(0.3903914, 1, 0.46536243, 1)
+
+[node name="water" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 710.0
+offset_top = 399.0
+offset_right = 917.0
+offset_bottom = 449.0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0wfyh")
+text = " WATER WELL"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 29.0
+offset_right = 168.0
+offset_bottom = 74.0
+text = " WATER: 0"
+label_settings = SubResource("LabelSettings_o5qli")
+
+[node name="help_plant" type="Button" parent="."]
+layout_mode = 0
+offset_left = 555.0
+offset_top = 267.0
+offset_right = 592.0
+offset_bottom = 460.0
+focus_mode = 0
+
+[node name="auto_get_water" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="plant_cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="auto_get_water" to="." method="_on_auto_get_water_timeout"]
