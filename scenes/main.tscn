@@ -1,9 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://d12we4f18h0ds"]
+[gd_scene load_steps=11 format=3 uid="uid://d12we4f18h0ds"]
 
 [ext_resource type="Script" uid="uid://x6m5dnjnr85g" path="res://scripts/main.gd" id="1_o5qli"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
 font_size = 40
+
+[sub_resource type="Animation" id="Animation_0wfyh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(558, 299)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 213)]
+}
 
 [sub_resource type="Animation" id="Animation_o5qli"]
 resource_name = "move"
@@ -33,44 +60,26 @@ tracks/1/keys = {
 "values": [Vector2(40, 213), Vector2(114, 213)]
 }
 
-[sub_resource type="Animation" id="Animation_0wfyh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(558, 299)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(40, 213)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sugp2"]
 _data = {
 &"RESET": SubResource("Animation_0wfyh"),
 &"move": SubResource("Animation_o5qli")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(40, 40)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_o5qli"]
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_sugp2"]
+font_size = 24
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
+size = Vector2(21.578491, 85.25925)
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -126,6 +135,22 @@ autostart = true
 
 [node name="Node" type="Node" parent="."]
 
+[node name="bugs" type="Node" parent="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="Node/bugs"]
+offset_left = 635.0
+offset_top = 137.0
+offset_right = 675.0
+offset_bottom = 177.0
+
+[node name="bug_hurtBox" type="Area2D" parent="Node/bugs/ColorRect"]
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/bugs/ColorRect/bug_hurtBox"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_0wfyh")
+
 [node name="BG_stuff" type="ColorRect" parent="Node"]
 offset_left = 817.0
 offset_top = 97.0
@@ -161,6 +186,9 @@ offset_right = 228.0
 offset_bottom = 464.0
 color = Color(0.3903914, 1, 0.46536243, 1)
 
+[node name="Marker2D" type="Marker2D" parent="Node"]
+position = Vector2(1028, 196)
+
 [node name="water" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
@@ -195,5 +223,36 @@ wait_time = 2.0
 [node name="plant_cooldown" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 944.0
+offset_top = 132.0
+offset_right = 1149.0
+offset_bottom = 167.0
+text = " HOLD [S] TO USE "
+label_settings = SubResource("LabelSettings_sugp2")
+
+[node name="pat" type="ColorRect" parent="."]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 0
+offset_left = 1023.0
+offset_top = 191.99997
+offset_right = 1048.0
+offset_bottom = 281.99997
+rotation = -0.2617994
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
+
+[node name="pat_hitBox" type="Area2D" parent="pat"]
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pat/pat_hitBox"]
+position = Vector2(12.217041, 44.848694)
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_o5qli")
 
 [connection signal="timeout" from="auto_get_water" to="." method="_on_auto_get_water_timeout"]
