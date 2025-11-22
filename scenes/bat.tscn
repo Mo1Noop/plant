@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://chp8scdcq44pn"]
+
+[ext_resource type="Script" uid="uid://by2rv4lkc16r3" path="res://scripts/bat.gd" id="1_uhqni"]
+
+[sub_resource type="Gradient" id="Gradient_nol5w"]
+colors = PackedColorArray(1, 0, 0, 1, 0.5045258, 0.47875804, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uhqni"]
+gradient = SubResource("Gradient_nol5w")
+width = 24
+fill_to = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnldk"]
+size = Vector2(24, 64)
+
+[node name="bat" type="Sprite2D"]
+rotation = -0.2617994
+texture = SubResource("GradientTexture2D_uhqni")
+script = ExtResource("1_uhqni")
+
+[node name="bat_area" type="Area2D" parent="." groups=["bat"]]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bat_area"]
+shape = SubResource("RectangleShape2D_cnldk")
+
+[connection signal="area_entered" from="bat_area" to="." method="_on_bat_area_area_entered"]

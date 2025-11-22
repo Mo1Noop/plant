@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://2050k1jrmuix"]
+
+[ext_resource type="Script" uid="uid://84fpx15fs4gq" path="res://scenes/enimes.gd" id="1_a2417"]
+
+[sub_resource type="Gradient" id="Gradient_x3b5q"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a2417"]
+gradient = SubResource("Gradient_x3b5q")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg6i6"]
+size = Vector2(64, 64)
+
+[node name="enemies" type="Sprite2D"]
+texture = SubResource("GradientTexture2D_a2417")
+script = ExtResource("1_a2417")
+
+[node name="enemies_area" type="Area2D" parent="." groups=["enemies"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemies_area"]
+shape = SubResource("RectangleShape2D_gg6i6")
+
+[connection signal="area_entered" from="enemies_area" to="." method="_on_enemies_area_area_entered"]

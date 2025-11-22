@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://btyrcrh46ssee"]
+
+[ext_resource type="Script" uid="uid://cq3pc3r0i5ohv" path="res://scripts/ui.gd" id="1_nt7q6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nt7q6"]
+font_size = 32
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_nt7q6")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 80)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xlq6p")
+
+[node name="water_text" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -22.5
+offset_right = 141.0
+offset_bottom = 22.5
+grow_vertical = 2
+text = " WATER : "
+label_settings = SubResource("LabelSettings_nt7q6")
+
+[node name="plant_text" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 305.0
+offset_top = -22.0
+offset_right = 446.0
+offset_bottom = 23.0
+grow_vertical = 2
+text = " PLANT : "
+label_settings = SubResource("LabelSettings_nt7q6")
+
+[node name="day_text" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 548.0
+offset_top = -22.0
+offset_right = 689.0
+offset_bottom = 23.0
+grow_vertical = 2
+text = " DAY : "
+label_settings = SubResource("LabelSettings_nt7q6")

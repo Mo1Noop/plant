@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpqq6apgkyhl5"]
+
+[ext_resource type="Script" uid="uid://w2yiljrh24g7" path="res://scripts/water_well.gd" id="1_6q2wg"]
+
+[sub_resource type="Gradient" id="Gradient_u24s3"]
+colors = PackedColorArray(0, 0.012343145, 0.47737116, 1, 0, 0.8499203, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6q2wg"]
+gradient = SubResource("Gradient_u24s3")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="water_well" type="Sprite2D"]
+scale = Vector2(1.3125, 0.5)
+texture = SubResource("GradientTexture2D_6q2wg")
+script = ExtResource("1_6q2wg")
+
+[node name="water_Button" type="Button" parent="."]
+offset_left = -30.47619
+offset_top = -28.0
+offset_right = 30.47619
+offset_bottom = 26.0
+focus_mode = 0
+flat = true
+
+[connection signal="pressed" from="water_Button" to="." method="_on_water_button_pressed"]

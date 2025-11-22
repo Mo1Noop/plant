@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://tkm3l7i3x1oh"]
+
+[ext_resource type="Script" uid="uid://d4dsgwqac7ucv" path="res://scripts/main_2.gd" id="1_f241j"]
+[ext_resource type="PackedScene" uid="uid://chp8scdcq44pn" path="res://scenes/bat.tscn" id="1_qdc3n"]
+[ext_resource type="PackedScene" uid="uid://bdofu6eruqced" path="res://scenes/plant.tscn" id="2_owpos"]
+[ext_resource type="PackedScene" uid="uid://btyrcrh46ssee" path="res://scenes/ui.tscn" id="2_rkluo"]
+[ext_resource type="PackedScene" uid="uid://bpqq6apgkyhl5" path="res://scenes/water_well.tscn" id="4_43ty5"]
+[ext_resource type="PackedScene" uid="uid://2050k1jrmuix" path="res://scenes/enimes.tscn" id="5_43ty5"]
+
+[node name="main_2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f241j")
+
+[node name="Marker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1032, 187)
+
+[node name="UI" parent="." instance=ExtResource("2_rkluo")]
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.18772167, 0.002910415, 1)
+
+[node name="plant" parent="." instance=ExtResource("2_owpos")]
+position = Vector2(606, 432)
+
+[node name="water_well" parent="." instance=ExtResource("4_43ty5")]
+position = Vector2(811.99994, 470)
+scale = Vector2(1.3125, 0.49999997)
+
+[node name="enemies" parent="." instance=ExtResource("5_43ty5")]
+position = Vector2(559, 131)
+
+[node name="bat" parent="." instance=ExtResource("1_qdc3n")]
+z_index = 2
+position = Vector2(1039, 188.00002)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="plant_hp" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="plant_hp" to="." method="_on_plant_hp_timeout"]
