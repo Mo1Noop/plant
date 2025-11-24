@@ -1,11 +1,49 @@
-[gd_scene load_steps=7 format=3 uid="uid://tkm3l7i3x1oh"]
+[gd_scene load_steps=15 format=3 uid="uid://tkm3l7i3x1oh"]
 
 [ext_resource type="Script" uid="uid://d4dsgwqac7ucv" path="res://scripts/main_2.gd" id="1_f241j"]
 [ext_resource type="PackedScene" uid="uid://chp8scdcq44pn" path="res://scenes/bat.tscn" id="1_qdc3n"]
 [ext_resource type="PackedScene" uid="uid://bdofu6eruqced" path="res://scenes/plant.tscn" id="2_owpos"]
 [ext_resource type="PackedScene" uid="uid://btyrcrh46ssee" path="res://scenes/ui.tscn" id="2_rkluo"]
+[ext_resource type="PackedScene" uid="uid://qctwgn16sl41" path="res://scenes/lose_scene.tscn" id="2_ywx0f"]
 [ext_resource type="PackedScene" uid="uid://bpqq6apgkyhl5" path="res://scenes/water_well.tscn" id="4_43ty5"]
-[ext_resource type="PackedScene" uid="uid://2050k1jrmuix" path="res://scenes/enimes.tscn" id="5_43ty5"]
+[ext_resource type="PackedScene" uid="uid://c51yg6hjtl71d" path="res://scenes/enemy_spawner.tscn" id="7_ywx0f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rkluo"]
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xb34a"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1k1ng"]
+font_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywx0f"]
+bg_color = Color(0.54073197, 0.54073197, 0.54073197, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1hce"]
+bg_color = Color(0.4117647, 0.5411765, 0.5411765, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmh72"]
+bg_color = Color(0.5411765, 0.5411765, 0.5411765, 0.63529414)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4383"]
+bg_color = Color(0.54073197, 0.54073197, 0.54073197, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="main_2" type="Control"]
 layout_mode = 3
@@ -20,6 +58,9 @@ script = ExtResource("1_f241j")
 unique_name_in_owner = true
 position = Vector2(1032, 187)
 
+[node name="lose_scene" parent="." instance=ExtResource("2_ywx0f")]
+visible = false
+
 [node name="UI" parent="." instance=ExtResource("2_rkluo")]
 
 [node name="BG" type="ColorRect" parent="."]
@@ -29,17 +70,74 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.18772167, 0.002910415, 1)
+color = Color(0, 0.3778041, 0.007870888, 1)
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+z_index = 1
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.2784314, 0.1882353, 0.14901961, 1)
+
+[node name="Label" type="Label" parent="BG"]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 398.0
+offset_right = 932.0
+offset_bottom = 433.0
+text = " WATER WELL"
+label_settings = SubResource("LabelSettings_rkluo")
+
+[node name="info" type="Label" parent="BG"]
+z_index = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 120.0
+offset_right = 335.0
+offset_bottom = 177.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xb34a")
+text = " prevent the plant from dying "
+label_settings = SubResource("LabelSettings_1k1ng")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info2" type="Label" parent="BG"]
+z_index = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 188.0
+offset_right = 275.0
+offset_bottom = 245.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xb34a")
+text = "kill the bugs for coins"
+label_settings = SubResource("LabelSettings_1k1ng")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info3" type="Label" parent="BG"]
+z_index = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 260.0
+offset_right = 261.0
+offset_bottom = 317.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xb34a")
+text = "use coins to upgrade"
+label_settings = SubResource("LabelSettings_1k1ng")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="plant" parent="." instance=ExtResource("2_owpos")]
-position = Vector2(606, 432)
+position = Vector2(598, 468.99997)
 
 [node name="water_well" parent="." instance=ExtResource("4_43ty5")]
-position = Vector2(811.99994, 470)
-scale = Vector2(1.3125, 0.49999997)
-
-[node name="enemies" parent="." instance=ExtResource("5_43ty5")]
-position = Vector2(559, 131)
+position = Vector2(851, 491.99997)
+scale = Vector2(2.2187514, 0.8452386)
 
 [node name="bat" parent="." instance=ExtResource("1_qdc3n")]
 z_index = 2
@@ -50,4 +148,38 @@ scale = Vector2(0.99999994, 0.99999994)
 wait_time = 5.0
 autostart = true
 
+[node name="enmy_timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="EnemySpawner" parent="." instance=ExtResource("7_ywx0f")]
+
+[node name="restart" type="Button" parent="."]
+process_mode = 3
+z_index = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -69.0
+offset_right = 244.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_ywx0f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e1hce")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hmh72")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_r4383")
+text = " START "
+
 [connection signal="timeout" from="plant_hp" to="." method="_on_plant_hp_timeout"]
+[connection signal="timeout" from="enmy_timer" to="." method="_on_enmy_timer_timeout"]
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]

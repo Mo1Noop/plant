@@ -1,27 +1,143 @@
-[gd_scene load_steps=5 format=3 uid="uid://chp8scdcq44pn"]
+[gd_scene load_steps=7 format=3 uid="uid://chp8scdcq44pn"]
 
 [ext_resource type="Script" uid="uid://by2rv4lkc16r3" path="res://scripts/bat.gd" id="1_uhqni"]
-
-[sub_resource type="Gradient" id="Gradient_nol5w"]
-colors = PackedColorArray(1, 0, 0, 1, 0.5045258, 0.47875804, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uhqni"]
-gradient = SubResource("Gradient_nol5w")
-width = 24
-fill_to = Vector2(0, 1)
+[ext_resource type="Texture2D" uid="uid://dhi4pjxj8qtvj" path="res://art/bat.png" id="2_cnldk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnldk"]
-size = Vector2(24, 64)
+size = Vector2(28, 83)
+
+[sub_resource type="Animation" id="Animation_ss3tx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2617994]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bat_area/CollisionShape2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2617994]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bat_area/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.89657557, 4.381343)]
+}
+
+[sub_resource type="Animation" id="Animation_48wkk"]
+resource_name = "bat"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2617994, -0.35430184]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bat_area/CollisionShape2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2617994, -0.5235988]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bat_area/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4.886, -10.17), Vector2(-6.998, 0.211)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lv0ya"]
+_data = {
+&"RESET": SubResource("Animation_ss3tx"),
+&"bat": SubResource("Animation_48wkk")
+}
 
 [node name="bat" type="Sprite2D"]
 rotation = -0.2617994
-texture = SubResource("GradientTexture2D_uhqni")
 script = ExtResource("1_uhqni")
 
 [node name="bat_area" type="Area2D" parent="." groups=["bat"]]
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bat_area"]
+position = Vector2(0.89657557, 4.381343)
+rotation = 0.2617994
 shape = SubResource("RectangleShape2D_cnldk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(12.557036, 3.3646476)
+rotation = 0.2617994
+scale = Vector2(3.8, 3.8)
+texture = ExtResource("2_cnldk")
+vframes = 2
+
+[node name="bat_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lv0ya")
+}
 
 [connection signal="area_entered" from="bat_area" to="." method="_on_bat_area_area_entered"]

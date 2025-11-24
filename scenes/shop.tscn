@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://wceja8c8fwr4"]
+
+[ext_resource type="Script" uid="uid://be4rroviwukc2" path="res://scripts/shop.gd" id="1_lx5au"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdmwb"]
+bg_color = Color(0.6312474, 0.6312474, 0.6312474, 1)
+
+[node name="shop" type="Panel"]
+offset_left = 4.0
+offset_right = 289.0
+offset_bottom = 193.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bdmwb")
+script = ExtResource("1_lx5au")
+
+[node name="auto water plant" type="Button" parent="."]
+layout_mode = 0
+offset_top = 75.0
+offset_right = 285.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 28
+text = "auto water plant"
+
+[node name="auto collect water" type="Button" parent="."]
+layout_mode = 0
+offset_top = 137.0
+offset_right = 285.0
+offset_bottom = 184.0
+theme_override_font_sizes/font_size = 28
+text = "auto collect water"
+
+[node name="plant_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="water_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="pressed" from="auto water plant" to="." method="_on_auto_water_plant_pressed"]
+[connection signal="pressed" from="auto collect water" to="." method="_on_auto_collect_water_pressed"]
+[connection signal="timeout" from="plant_timer" to="." method="_on_plant_timer_timeout"]
+[connection signal="timeout" from="water_timer" to="." method="_on_water_timer_timeout"]

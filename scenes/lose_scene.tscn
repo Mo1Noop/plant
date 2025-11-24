@@ -1,0 +1,147 @@
+[gd_scene load_steps=8 format=3 uid="uid://qctwgn16sl41"]
+
+[ext_resource type="Script" uid="uid://d1tyiijsohink" path="res://scripts/lose_scene.gd" id="1_68m3b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vthu"]
+bg_color = Color(0.1110151, 0.47737116, 0.27220428, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_m2sg5"]
+font_size = 90
+font_color = Color(1, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw2vd"]
+bg_color = Color(0.54073197, 0.54073197, 0.54073197, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8w6tn"]
+bg_color = Color(0.4117647, 0.5411765, 0.5411765, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3pwq"]
+bg_color = Color(0.5411765, 0.5411765, 0.5411765, 0.63529414)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jhep"]
+bg_color = Color(0.54073197, 0.54073197, 0.54073197, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+
+[node name="lose_scene" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_68m3b")
+
+[node name="ColorRect" type="ColorRect" parent="lose_scene"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.58431375)
+
+[node name="Panel" type="Panel" parent="lose_scene"]
+custom_minimum_size = Vector2(650, 350)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6vthu")
+
+[node name="Label" type="Label" parent="lose_scene/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = " YOU LOST "
+label_settings = SubResource("LabelSettings_m2sg5")
+
+[node name="restart" type="Button" parent="lose_scene/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_lw2vd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8w6tn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c3pwq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5jhep")
+text = " RESTART "
+
+[node name="exit" type="Button" parent="lose_scene/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = 36.0
+offset_right = 94.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_lw2vd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8w6tn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c3pwq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5jhep")
+text = " EXIT "
+
+[connection signal="pressed" from="lose_scene/Panel/restart" to="lose_scene" method="_on_restart_pressed"]
+[connection signal="pressed" from="lose_scene/Panel/exit" to="lose_scene" method="_on_exit_pressed"]

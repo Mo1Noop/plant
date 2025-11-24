@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="plant"
-run/main_scene="uid://d12we4f18h0ds"
+config/name="plant_2"
+run/main_scene="uid://tkm3l7i3x1oh"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
@@ -38,4 +38,5 @@ test={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"

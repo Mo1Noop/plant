@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpqq6apgkyhl5"]
+[gd_scene load_steps=5 format=3 uid="uid://bpqq6apgkyhl5"]
 
 [ext_resource type="Script" uid="uid://w2yiljrh24g7" path="res://scripts/water_well.gd" id="1_6q2wg"]
+[ext_resource type="AudioStream" uid="uid://d0fl4wf2m64al" path="res://sound/water-191999.mp3" id="2_sliwi"]
 
 [sub_resource type="Gradient" id="Gradient_u24s3"]
 colors = PackedColorArray(0, 0.012343145, 0.47737116, 1, 0, 0.8499203, 1, 1)
@@ -22,5 +23,10 @@ offset_right = 30.47619
 offset_bottom = 26.0
 focus_mode = 0
 flat = true
+
+[node name="Water" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-0.7619048, -6)
+stream = ExtResource("2_sliwi")
+volume_db = -15.0
 
 [connection signal="pressed" from="water_Button" to="." method="_on_water_button_pressed"]

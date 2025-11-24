@@ -1,18 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdofu6eruqced"]
 
 [ext_resource type="Script" uid="uid://c2epo6fiowxt2" path="res://scripts/plant.gd" id="1_fi0kw"]
-
-[sub_resource type="Gradient" id="Gradient_odjdt"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a88lo"]
-gradient = SubResource("Gradient_odjdt")
+[ext_resource type="Texture2D" uid="uid://dky6a0e37teae" path="res://art/plant.png" id="2_odjdt"]
+[ext_resource type="AudioStream" uid="uid://ba7spmw426rwe" path="res://sound/water-pouring-405458.mp3" id="3_a88lo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5w0e"]
-size = Vector2(63.999977, 63.999973)
+size = Vector2(112.999954, 113.91995)
 
 [node name="plant" type="Sprite2D"]
 scale = Vector2(0.5, 1.5625)
-texture = SubResource("GradientTexture2D_a88lo")
 script = ExtResource("1_fi0kw")
 
 [node name="Area2D" type="Area2D" parent="." groups=["plant"]]
@@ -20,7 +16,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -0.6400003)
+position = Vector2(1.9999995, -39.04)
 scale = Vector2(1.0000004, 1.0000004)
 shape = SubResource("RectangleShape2D_m5w0e")
 
@@ -28,13 +24,24 @@ shape = SubResource("RectangleShape2D_m5w0e")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = -32.0
-offset_bottom = -32.0
+offset_left = -64.0
+offset_top = -96.64
+offset_right = 75.0
+offset_bottom = 6.040001
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 flat = true
+
+[node name="plant_sprite" type="Sprite2D" parent="."]
+position = Vector2(62.00003, -22.4)
+scale = Vector2(11.375001, 4)
+texture = ExtResource("2_odjdt")
+vframes = 3
+
+[node name="WaterPouring" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-6, -3.1999998)
+stream = ExtResource("3_a88lo")
+volume_db = -15.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

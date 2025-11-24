@@ -1,12 +1,142 @@
-[gd_scene load_steps=4 format=3 uid="uid://btyrcrh46ssee"]
+[gd_scene load_steps=14 format=3 uid="uid://btyrcrh46ssee"]
 
 [ext_resource type="Script" uid="uid://cq3pc3r0i5ohv" path="res://scripts/ui.gd" id="1_nt7q6"]
+[ext_resource type="PackedScene" uid="uid://wceja8c8fwr4" path="res://scenes/shop.tscn" id="2_x4jx1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nt7q6"]
 font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
+bg_color = Color(0, 0.38685566, 0.06899016, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4jx1"]
+bg_color = Color(0, 0.3882353, 0.07058824, 0.627451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yev5y"]
+bg_color = Color(0, 0.3882353, 0.07058824, 0.49803922)
+
+[sub_resource type="InputEventKey" id="InputEventKey_x4jx1"]
+device = -1
+keycode = 70
+unicode = 102
+
+[sub_resource type="Shortcut" id="Shortcut_yev5y"]
+events = [SubResource("InputEventKey_x4jx1")]
+
+[sub_resource type="Animation" id="Animation_gdt2y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Panel/shop_Button:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.20293494, 0.20293494)]
+}
+
+[sub_resource type="Animation" id="Animation_yev5y"]
+resource_name = "shop"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Panel/shop_Button:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 12), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.20293494, 0.20293494), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wm3ai"]
+_data = {
+&"RESET": SubResource("Animation_gdt2y"),
+&"shop": SubResource("Animation_yev5y")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_x4jx1"]
+font_size = 25
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_nt7q6")
@@ -23,35 +153,150 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -22.5
-offset_right = 141.0
-offset_bottom = 22.5
+offset_left = 306.0
+offset_top = -40.0
+offset_right = 447.0
+offset_bottom = 5.0
 grow_vertical = 2
-text = " WATER : "
+text = " WATER "
 label_settings = SubResource("LabelSettings_nt7q6")
+
+[node name="water_text2" type="Label" parent="Panel/water_text"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 16.5
+offset_right = 135.0
+offset_bottom = 61.5
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_nt7q6")
+horizontal_alignment = 1
 
 [node name="plant_text" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 305.0
-offset_top = -22.0
-offset_right = 446.0
-offset_bottom = 23.0
+offset_left = 500.0
+offset_top = -40.0
+offset_right = 622.0
+offset_bottom = 5.0
 grow_vertical = 2
-text = " PLANT : "
+text = " PLANT "
 label_settings = SubResource("LabelSettings_nt7q6")
 
-[node name="day_text" type="Label" parent="Panel"]
+[node name="plant_text2" type="Label" parent="Panel/plant_text"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 548.0
-offset_top = -22.0
-offset_right = 689.0
-offset_bottom = 23.0
+offset_left = 20.0
+offset_top = 16.5
+offset_right = 108.0
+offset_bottom = 61.5
 grow_vertical = 2
-text = " DAY : "
+text = "1"
 label_settings = SubResource("LabelSettings_nt7q6")
+horizontal_alignment = 1
+
+[node name="coins_text" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 700.0
+offset_top = -40.0
+offset_right = 820.0
+offset_bottom = 5.0
+grow_vertical = 2
+text = " COINS "
+label_settings = SubResource("LabelSettings_nt7q6")
+
+[node name="coins_text2" type="Label" parent="Panel/coins_text"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 16.5
+offset_right = 120.0
+offset_bottom = 61.5
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_nt7q6")
+horizontal_alignment = 1
+
+[node name="score_text" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 912.0
+offset_top = -40.0
+offset_right = 1040.0
+offset_bottom = 5.0
+grow_vertical = 2
+text = " SCORE "
+label_settings = SubResource("LabelSettings_nt7q6")
+
+[node name="score_text2" type="Label" parent="Panel/score_text"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 16.5
+offset_right = 108.0
+offset_bottom = 61.5
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_nt7q6")
+horizontal_alignment = 1
+
+[node name="shop_Button" type="Button" parent="Panel"]
+z_index = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = 143.00014
+offset_bottom = 64.99995
+tooltip_text = "PRESS [F]"
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nt7q6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x4jx1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yev5y")
+toggle_mode = true
+shortcut = SubResource("Shortcut_yev5y")
+shortcut_in_tooltip = false
+text = " SHOP "
+
+[node name="shop" parent="." instance=ExtResource("2_x4jx1")]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.20293494, 0.20293494)
+
+[node name="shop_anim" type="AnimationPlayer" parent="shop"]
+libraries = {
+&"": SubResource("AnimationLibrary_wm3ai")
+}
+
+[node name="Label" type="Label" parent="."]
+offset_left = 943.0
+offset_top = 90.0
+offset_right = 1088.0
+offset_bottom = 135.0
+text = " HOLD [S]"
+label_settings = SubResource("LabelSettings_x4jx1")
+
+[node name="press_f" type="Label" parent="."]
+offset_left = 146.0
+offset_top = 45.0
+offset_right = 255.0
+offset_bottom = 80.0
+text = "PRESS [F]"
+label_settings = SubResource("LabelSettings_x4jx1")
+
+[connection signal="toggled" from="Panel/shop_Button" to="." method="_on_shop_button_toggled"]

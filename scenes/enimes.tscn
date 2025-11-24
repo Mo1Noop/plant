@@ -1,25 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://2050k1jrmuix"]
+[gd_scene load_steps=9 format=3 uid="uid://2050k1jrmuix"]
 
-[ext_resource type="Script" uid="uid://84fpx15fs4gq" path="res://scenes/enimes.gd" id="1_a2417"]
-
-[sub_resource type="Gradient" id="Gradient_x3b5q"]
-colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a2417"]
-gradient = SubResource("Gradient_x3b5q")
-fill_from = Vector2(1, 0)
-fill_to = Vector2(1, 1)
+[ext_resource type="Script" uid="uid://84fpx15fs4gq" path="res://scripts/enimes.gd" id="1_a2417"]
+[ext_resource type="Texture2D" uid="uid://cnm1lfcidys0e" path="res://art/bug.png" id="2_gg6i6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg6i6"]
-size = Vector2(64, 64)
+size = Vector2(65, 42)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2417"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gg6i6"]
+bg_color = Color(0.059595346, 1, 0, 1)
+
+[sub_resource type="Animation" id="Animation_gg6i6"]
+resource_name = "bug"
+length = 0.3
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_73c4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_foinc"]
+_data = {
+&"RESET": SubResource("Animation_73c4g"),
+&"bug": SubResource("Animation_gg6i6")
+}
 
 [node name="enemies" type="Sprite2D"]
-texture = SubResource("GradientTexture2D_a2417")
 script = ExtResource("1_a2417")
 
 [node name="enemies_area" type="Area2D" parent="." groups=["enemies"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemies_area"]
+position = Vector2(-2.5, -13)
 shape = SubResource("RectangleShape2D_gg6i6")
+
+[node name="helth_Bar" type="ProgressBar" parent="."]
+offset_left = -31.0
+offset_top = -43.0
+offset_right = 31.0
+offset_bottom = -37.0
+theme_override_styles/background = SubResource("StyleBoxFlat_a2417")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gg6i6")
+max_value = 3.0
+step = 1.0
+value = 3.0
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.8125, 1.8125)
+texture = ExtResource("2_gg6i6")
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_foinc")
+}
+autoplay = "bug"
 
 [connection signal="area_entered" from="enemies_area" to="." method="_on_enemies_area_area_entered"]
